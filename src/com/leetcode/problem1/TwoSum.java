@@ -23,18 +23,19 @@ public class TwoSum implements MainInterface {
 		return null;
 	}
 
-	/* @see com.leetcode.main.MainInterface#excute()
+	/*
+	 * @see com.leetcode.main.MainInterface#excute()
 	 */
 	@Override
 	public void excute() {
 		System.out.println("problem 1 :");
-		int[] nums = {2, 7, 11, 15};
+		int[] nums = { 2, 7, 11, 15 };
 		int[] result = new TwoSum().twoSum(nums, 9);
 		if (result == null) {
 			System.out.println("未找到匹配项");
 		}
 		System.out.println("位置分别为" + result[0] + "和" + result[1]);
-		
+
 	}
 
 }
