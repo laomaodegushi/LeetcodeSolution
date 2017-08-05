@@ -22,7 +22,7 @@ public class AddTwoNumbers implements MainInterface {
 	    int node2Val = (node2 != null ? node2.val : 0);
 	    ListNode node1Next = (node1 == null ? null : node1.next);
 	    ListNode node2Next = (node2 == null ? null : node2.next);
-	    
+
 	    int val = node1Val + node2Val + nextPlusValue;
 	    result = new ListNode(val % 10);
 	    result.next = addTwoNumbers(node1Next, node2Next, val / 10);
@@ -54,10 +54,9 @@ public class AddTwoNumbers implements MainInterface {
 	n21.next = n22;
 	n22.next = n23;
 
+	ListNode n3 = addTwoNumbers.addTwoNumbers(n21, n11);
 	addTwoNumbers.display("输入1", n11);
 	addTwoNumbers.display("输入2", n21);
-
-	ListNode n3 = addTwoNumbers.addTwoNumbers(n21, n11);
 	addTwoNumbers.display("结果", n3);
     }
 }
