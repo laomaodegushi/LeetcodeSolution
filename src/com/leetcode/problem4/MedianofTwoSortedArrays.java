@@ -16,37 +16,43 @@ public class MedianofTwoSortedArrays implements MainInterface {
     public double findMedianSortedArrays(int[] nums1, int[] nums2) {
 	int m = nums1.length, n = nums2.length;
 	if ((m + n) % 2 == 1) {
-	    return findKth(nums1, 0, nums2, 0, (m + n) / 2 + 1);
+	    return findKth(nums1, nums2, (m + n) / 2 + 1);
 	} else {
-	    return findKth(nums1, 0, nums2, 0, (m + n) / 2 + 1) / 2.0
-		    + findKth(nums1, 0, nums2, 0, (m + n) / 2) / 2.0;
+	    return findKth(nums1, nums2, (m + n) / 2 + 1) / 2.0
+		    + findKth(nums1, nums2, (m + n) / 2) / 2.0;
 	}
     }
 
-    public int findKth(int[] array1, int start1, int[] array2, int start2, int kth) {
-	if (array1.length - start1 < array2.length - start2) {
-	    return findKth(array2, start2, array1, start1, kth);
+    public int findKth(int[] array1, int[] array2, int kth) {
+	if (array1.length < array2.length) {
+	    return findKth(array2, array1, kth);
 	}
-	if (start2 == array2.length) {
-	    return array1[start1 + kth - 1];
+	if (array2.length == 0) {
+	    return array1[kth - 1];
 	}
 	if (kth == 1) {
-	    return Math.min(array1[start1], array2[start2]);
+	    return Math.min(array1[0], array2[0]);
 	}
-	int offset2 = Math.min(array2.length - start2, kth / 2);
+
+	int offset2 = Math.min(array2.length, kth / 2);
 	int offset1 = kth - offset2;
-	if (array1[start1 + offset1 - 1] < array2[start2 + offset2 - 1]) {
-	    return findKth(array1, start1 + offset1, array2, start2, kth - offset1);
+
+	if (array1[offset1 - 1] < array2[offset2 - 1]) {
+	    int[] array1sub = new int[array1.length - offset1];
+	    System.arraycopy(array1, offset1, array1sub, 0, array1sub.length);
+	    return findKth(array1sub, array2, kth - offset1);
 	} else {
-	    return findKth(array1, start1, array2, start2 + offset2, kth - offset2);
+	    int[] array2sub = new int[array2.length - offset2];
+	    System.arraycopy(array2, offset2, array2sub, 0, array2sub.length);
+	    return findKth(array2sub, array1, kth - offset2);
 	}
     }
 
     @Override
     public void excute() {
 	System.out.println("problem 4:");
-	int[] num2 = { 1, 4, 4 };
-	int[] num1 = { 2, 3 };
+	int[] num2 = { 1, 2, 4, 4, 5 };
+	int[] num1 = { 2, 3, 7, 8 };
 	System.out.println(new MedianofTwoSortedArrays().findMedianSortedArrays(num1, num2));
     }
 
