@@ -4,8 +4,12 @@
  */
 package com.leetcode.problem3;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import com.leetcode.main.MainInterface;
 
@@ -28,13 +32,48 @@ public class LongesSubstringWithoutRepeatingCharacters implements MainInterface 
 	}
 	return Math.max(maxLength, s.length() - lastWithoutRepeatLocation);
     }
+    
+    public List<String> longestSubstringWithoutRepeating(String s) {
+	Set<Integer> startLocation = new HashSet<Integer>(0);
+	int maxLength = 0, lastWithoutRepeatLocation = 0;
+	Map<Character, Integer> hashMap = new HashMap<>();
+	for (int i = 0; i < s.length(); i++) {
+	    char ch = s.charAt(i);
+	    if (hashMap.containsKey(ch) && hashMap.get(ch) >= lastWithoutRepeatLocation) {
+		int length = i - lastWithoutRepeatLocation;
+		if (maxLength < length) {
+		    maxLength = length;
+		    startLocation.clear();
+		    startLocation.add(lastWithoutRepeatLocation);
+		} else if (maxLength == length){
+		    startLocation.add(lastWithoutRepeatLocation);
+		}
+		lastWithoutRepeatLocation = hashMap.get(ch) + 1;
+	    }
+	    hashMap.put(ch, i);
+	}
+	if (maxLength < (s.length() - lastWithoutRepeatLocation)) {
+	    maxLength = s.length() - lastWithoutRepeatLocation;
+	    startLocation.clear();
+	    startLocation.add(lastWithoutRepeatLocation);
+	} else if (maxLength == (s.length() - lastWithoutRepeatLocation)){
+	    startLocation.add(lastWithoutRepeatLocation);
+	}
+	
+	List<String> result = new ArrayList<String>();
+	for (Integer start : startLocation) {
+	    result.add(s.substring(start, start + maxLength));
+	}
+	return result;
+    }
 
     @Override
     public void excute() {
 	System.out.println("problem 3 :");
-	String string = "aba!@#!@3123$32 cdfr";
+	String string = "abbdaseedaksdhcnuiii23904821kj";
 	LongesSubstringWithoutRepeatingCharacters demo = new LongesSubstringWithoutRepeatingCharacters();
 	System.out.println(demo.lengthOfLongestSubstring(string));
+	System.out.println(demo.longestSubstringWithoutRepeating(string));
     }
 
 }
