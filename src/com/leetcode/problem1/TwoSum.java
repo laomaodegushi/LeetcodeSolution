@@ -30,7 +30,7 @@ public class TwoSum implements MainInterface {
     public void excute() {
 	System.out.println("problem 1 :");
 	int[] nums = { 2, 7, 11, 15 };
-	int[] result = new TwoSum().twoSum(nums, 9);
+	int[] result = twoSum(nums, 9);
 	if (result == null) {
 	    System.out.println("未找到匹配项");
 	}

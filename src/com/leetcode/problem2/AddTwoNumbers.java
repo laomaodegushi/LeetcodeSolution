@@ -42,7 +42,6 @@ public class AddTwoNumbers implements MainInterface {
     @Override
     public void excute() {
 	System.out.println("problem 2 :");
-	AddTwoNumbers addTwoNumbers = new AddTwoNumbers();
 	ListNode n11 = new ListNode(9);
 	ListNode n12 = new ListNode(9);
 	ListNode n13 = new ListNode(7);
@@ -54,10 +53,10 @@ public class AddTwoNumbers implements MainInterface {
 	n21.next = n22;
 	n22.next = n23;
 
-	ListNode n3 = addTwoNumbers.addTwoNumbers(n21, n11);
-	addTwoNumbers.display("输入1", n11);
-	addTwoNumbers.display("输入2", n21);
-	addTwoNumbers.display("结果", n3);
+	ListNode n3 = addTwoNumbers(n21, n11);
+	display("输入1", n11);
+	display("输入2", n21);
+	display("结果", n3);
     }
 }
 

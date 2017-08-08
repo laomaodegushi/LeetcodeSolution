@@ -71,9 +71,8 @@ public class LongesSubstringWithoutRepeatingCharacters implements MainInterface 
     public void excute() {
 	System.out.println("problem 3 :");
 	String string = "abbdaseedaksdhcnuiii23904821kj";
-	LongesSubstringWithoutRepeatingCharacters demo = new LongesSubstringWithoutRepeatingCharacters();
-	System.out.println(demo.lengthOfLongestSubstring(string));
-	System.out.println(demo.longestSubstringWithoutRepeating(string));
+	System.out.println(lengthOfLongestSubstring(string));
+	System.out.println(longestSubstringWithoutRepeating(string));
     }
 
 }

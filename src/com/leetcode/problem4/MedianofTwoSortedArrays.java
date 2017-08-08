@@ -53,7 +53,7 @@ public class MedianofTwoSortedArrays implements MainInterface {
 	System.out.println("problem 4:");
 	int[] num2 = { 1, 2, 4, 4, 5 };
 	int[] num1 = { 2, 3, 7, 8 };
-	System.out.println(new MedianofTwoSortedArrays().findMedianSortedArrays(num1, num2));
+	System.out.println(findMedianSortedArrays(num1, num2));
     }
 
 }
